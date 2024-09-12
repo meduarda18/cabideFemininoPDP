@@ -1,6 +1,6 @@
 package br.edu.ifpb.entity;
 
-import br.edu.ifpb.util.IdGenerator;
+import br.edu.ifpb.util.IdGeneratorReplacement;
 
 public class Replacement {
     private Integer id;
@@ -12,11 +12,11 @@ public class Replacement {
 
     //construtor padrão
     public  Replacement(){
-        this.id = IdGenerator.generateId();
+        this.id = IdGeneratorReplacement.generateIdReplacement();
     }
 
     public Replacement(Product product, String size, int quantity, String replacementDate, float buyValue) {
-        this.id = IdGenerator.generateId();
+        this.id = IdGeneratorReplacement.generateIdReplacement();
         this.product = product;
         this.size = size;
         this.quantity = quantity;

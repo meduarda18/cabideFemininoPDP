@@ -14,7 +14,7 @@ public class SaleItemService implements CrudService<SaleItem, Integer> {
     @Override
     public void add(SaleItem saleItem) {
         if(SaleItemValidator.saleItemExists(saleItem, salesItems)){
-            throw new IllegalArgumentException("Este produto já existe.");
+            throw new IllegalArgumentException("Este item de venda já existe.");
         }
         SaleItemValidator.validateSaleItem(saleItem);
         salesItems.add(saleItem);
@@ -45,7 +45,7 @@ public class SaleItemService implements CrudService<SaleItem, Integer> {
             saleItem.setSize(item.getSize());
             saleItem.setUnitValue(item.getUnitValue());
             saleItem.setQuantity(item.getQuantity());
-            saleItem.setSale(item.getSale()); //verificar se pode alterar a venda de um item de venda
+            //saleItem.setSale(item.getSale()); verificar se pode alterar a venda de um item de venda
 
             return true;
         }

@@ -1,6 +1,6 @@
 package br.edu.ifpb.entity;
 
-import br.edu.ifpb.util.IdGenerator;
+import br.edu.ifpb.util.IdGeneratorSale;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,16 +12,17 @@ public class Sale {
     private String paymentMethod;
     private int instalment;
     private float discount;
+    //private SaleItem saleItem;
 
 
     public Sale(){
         this.items = new ArrayList<>();
-        this.id = IdGenerator.generateId();
+        this.id = IdGeneratorSale.generateIdSale();
     }
 
     public Sale(List<SaleItem> items, String saleDate, String paymentMethod, int instalment, float discount) {
-        this.id = IdGenerator.generateId();
-        this.items = items;
+        this.items = new ArrayList<>();
+        this.id = IdGeneratorSale.generateIdSale();
         this.saleDate = saleDate;
         this.paymentMethod = paymentMethod;
         this.instalment = instalment;
@@ -66,10 +67,30 @@ public class Sale {
         this.discount = discount;
     }
 
+    public float getTotalSale(){
+        float total = 0;
+
+        for(SaleItem saleItem : items){
+            total += (saleItem.getUnitValue() * saleItem.getQuantity()) - discount;
+        }
+        return total;
+    }
+
     @Override
     public String toString() {
-        return String.format("ID: %d | Data da venda: %s | Forma de pagamento: %s | Parcelas: %d | Desconto: %.2f",
-                id, saleDate, paymentMethod, instalment, discount);
+        String saleInfo = String.format("ID: %d | Data da venda: %s | Forma de pagamento: %s | Parcelas: %d | Desconto: %.2f | Total da venda: %.2f",
+                id, saleDate, paymentMethod, instalment, discount, getTotalSale());
+
+        if (!items.isEmpty()) {
+            saleInfo += "\nItens da venda:\n";
+            for (SaleItem item : items) {
+                saleInfo += item.toString() + "\n";
+            }
+        } else {
+            saleInfo += "\nNenhum item de venda.";
+        }
+
+        return saleInfo;
     }
 
 }

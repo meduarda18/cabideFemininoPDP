@@ -1,6 +1,6 @@
 package br.edu.ifpb.entity;
 
-import br.edu.ifpb.util.IdGenerator;
+import br.edu.ifpb.util.IdGeneratorSaleItem;
 
 public class SaleItem {
     private Integer id;
@@ -12,14 +12,14 @@ public class SaleItem {
 
     //Construtor padrão
     public SaleItem(){
-        this.id = IdGenerator.generateId();
+        this.id = IdGeneratorSaleItem.generateIdSaleItem();
     }
 
     public SaleItem(Product product, String size, float unitValue, int quantity, Sale sale) {
-        this.id = IdGenerator.generateId();
+        this.id = IdGeneratorSaleItem.generateIdSaleItem();
         this.product = product;
         this.size = size;
-        this.unitValue = unitValue;
+        this.unitValue = product.getSaleValue();
         this.quantity = quantity;
         this.sale = sale;
     }
@@ -62,5 +62,11 @@ public class SaleItem {
 
     public void setSale(Sale sale) {
         this.sale = sale;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("ID: %d | Produto: %s | Tamanho: %s | Valor unitário: %s | quantidade: %s ",
+                id, product, size, unitValue, quantity);
     }
 }

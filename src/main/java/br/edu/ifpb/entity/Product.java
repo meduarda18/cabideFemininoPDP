@@ -1,6 +1,6 @@
 package br.edu.ifpb.entity;
 
-import br.edu.ifpb.util.IdGenerator;
+import br.edu.ifpb.util.IdGeneratorProduct;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,12 +16,12 @@ public class Product {
     // Construtor padrão
     public Product() {
         this.replacements = new ArrayList<>();
-        this.id = IdGenerator.generateId();
+        this.id = IdGeneratorProduct.generateIdProduct();
     }
 
     // Construtor com parâmetros
     public Product( String type, float saleValue, String description, String color) {
-        this.id = IdGenerator.generateId();
+        this.id = IdGeneratorProduct.generateIdProduct();
         this.type = type;
         this.saleValue = saleValue;
         this.description = description;

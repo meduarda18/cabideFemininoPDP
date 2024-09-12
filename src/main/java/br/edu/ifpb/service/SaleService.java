@@ -1,8 +1,6 @@
 package br.edu.ifpb.service;
 
-import br.edu.ifpb.entity.Product;
 import br.edu.ifpb.entity.Sale;
-import br.edu.ifpb.validator.SaleValidator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -52,6 +50,7 @@ public class SaleService implements CrudService<Sale, Integer>{
         }
         throw new IllegalArgumentException("Venda com ID " + id + " não encontrado.");
     }
+
 
     public void printSales() {
         if (sales.isEmpty()) {

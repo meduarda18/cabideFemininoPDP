@@ -1,9 +1,9 @@
 package br.edu.ifpb.util;
 
-public class IdGenerator {
+public class IdGeneratorProduct {
     private static int idCounter = 0;
 
-    public static int generateId() {
+    public static int generateIdProduct() {
         return ++idCounter;
     }
 }

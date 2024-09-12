@@ -4,12 +4,13 @@ import java.util.List;
 
 public interface CrudService <Type, ID> {
 
-    public Type add(Type item);
+    public void add(Type item);
 
-    public void remove(ID id);
+    public boolean remove(ID id);
 
     public List<Type> list();
 
-    public Type update(ID id);
+    public boolean update(ID id, Type item);
 
+    public Type searchID(ID id);
 }

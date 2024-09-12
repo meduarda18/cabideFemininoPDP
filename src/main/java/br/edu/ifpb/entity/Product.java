@@ -20,8 +20,8 @@ public class Product {
     }
 
     // Construtor com parâmetros
-    public Product(Integer id, String type, float saleValue, String description, String color) {
-        this.id = id;
+    public Product( String type, float saleValue, String description, String color) {
+        this.id = IdGenerator.generateId();
         this.type = type;
         this.saleValue = saleValue;
         this.description = description;
@@ -30,57 +30,37 @@ public class Product {
     }
 
     // Getters e Setters
-    public Integer getId() {
-        return id;
-    }
+    public Integer getId() { return id; }
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
+    public void setId(Integer id) { this.id = id; }
 
-    public String getType() {
-        return type;
-    }
+    public String getType() { return type; }
 
-    public void setType(String type) {
-        this.type = type;
-    }
+    public void setType(String type) { this.type = type; }
 
-    public float getSaleValue() {
-        return saleValue;
-    }
+    public float getSaleValue() { return saleValue; }
 
-    public void setSaleValue(float saleValue) {
-        this.saleValue = saleValue;
-    }
+    public void setSaleValue(float saleValue) { this.saleValue = saleValue; }
 
-    public String getDescription() {
-        return description;
-    }
+    public String getDescription() { return description; }
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
+    public void setDescription(String description) { this.description = description; }
 
-    public String getColor() {
-        return color;
-    }
+    public String getColor() { return color; }
 
-    public void setColor(String color) {
-        this.color = color;
-    }
+    public void setColor(String color) { this.color = color; }
 
-    public List<Replacement> getReplacements() {
-        return replacements;
-    }
+    public List<Replacement> getReplacements() { return replacements; }
 
     // Adiciona uma reposição à lista
-    public void addReplacement(Replacement replacement) {
-        this.replacements.add(replacement);
-    }
+    public void addReplacement(Replacement replacement) { this.replacements.add(replacement); }
 
     // Remove uma reposição da lista
-    public void removeReplacement(Replacement replacement) {
-        this.replacements.remove(replacement);
+    public void removeReplacement(Replacement replacement) { this.replacements.remove(replacement); }
+
+    @Override
+    public String toString() {
+        return String.format("ID: %d | Tipo: %s | Valor de Venda: %.2f | Descrição: %s | Cor: %s",
+                id, type, saleValue, description, color);
     }
 }

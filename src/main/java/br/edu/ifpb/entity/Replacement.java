@@ -16,6 +16,7 @@ public class Replacement {
     }
 
     public Replacement(Product product, String size, int quantity, String replacementDate, float buyValue) {
+        this.id = IdGenerator.generateId();
         this.product = product;
         this.size = size;
         this.quantity = quantity;

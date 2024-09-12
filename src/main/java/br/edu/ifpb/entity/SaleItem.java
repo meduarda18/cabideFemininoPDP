@@ -16,6 +16,7 @@ public class SaleItem {
     }
 
     public SaleItem(Product product, String size, float unitValue, int quantity, Sale sale) {
+        this.id = IdGenerator.generateId();
         this.product = product;
         this.size = size;
         this.unitValue = unitValue;

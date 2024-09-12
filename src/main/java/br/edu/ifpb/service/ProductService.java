@@ -5,45 +5,69 @@ import br.edu.ifpb.validator.ProductValidator;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 public class ProductService implements CrudService<Product, Integer> {
     private final List<Product> products =  new ArrayList<>();
 
     @Override
-    public Product add(Product prod) {
+    public void add(Product prod) {
         if(ProductValidator.productExists(prod.getType(), prod.getColor(), products)){
-            throw new IllegalArgumentException("O produto já existe.");
+            throw new IllegalArgumentException("Este produto já existe.");
         }
         ProductValidator.validateProduct(prod);
         products.add(prod);
-        return prod;
     }
 
     @Override
-    public void remove(Integer id) {
-        Product productToRemove = null; // variável para armazenar o produto a ser removido
+    public boolean remove(Integer id) {
+        Product prod = searchID(id);
 
-        for (Product prod : products) {
-            if (prod.getId().equals(id)) {
-                productToRemove = prod;
-                break; // Encontra o produto e sai do loop
-            }
+        if(prod != null){
+            products.remove(prod);
+            return true;
         }
+        return false;
 
-        if (productToRemove != null) {
-            products.remove(productToRemove);
-        } else {
-            throw new IllegalArgumentException("Produto não encontrado.");
-        }
     }
 
     @Override
     public List<Product> list() {
-        return List.of();
+        return products;
     }
 
     @Override
-    public Product update(Integer id) {
-        return null;
+    public boolean update(Integer id, Product productUpdate) {
+        Product product = searchID(id);
+        if(product != null){
+            product.setType(productUpdate.getType());
+            product.setSaleValue(productUpdate.getSaleValue());
+            product.setDescription(productUpdate.getDescription());
+            product.setColor(productUpdate.getColor());
+
+            return true;
+        }
+
+        return false;
+    }
+
+    @Override
+    public Product searchID(Integer id) {
+        for (Product product : products) {
+            if (product.getId().equals(id)) {
+                return product;
+            }
+        }
+        throw new IllegalArgumentException("Produto com ID " + id + " não encontrado.");
+    }
+
+    public void printProducts() {
+        if (products.isEmpty()) {
+            System.out.println("Nenhum produto disponível.");
+        } else {
+            for (Product product : products) {
+                System.out.println(product);
+            }
+        }
     }
 }

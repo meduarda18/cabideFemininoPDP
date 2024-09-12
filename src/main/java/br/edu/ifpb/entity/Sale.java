@@ -20,6 +20,7 @@ public class Sale {
     }
 
     public Sale(List<SaleItem> items, String saleDate, String paymentMethod, int instalment, float discount) {
+        this.id = IdGenerator.generateId();
         this.items = items;
         this.saleDate = saleDate;
         this.paymentMethod = paymentMethod;
@@ -59,12 +60,16 @@ public class Sale {
         this.instalment = instalment;
     }
 
-    public float getDiscount() {
-        return discount;
-    }
+    public float getDiscount() { return discount; }
 
     public void setDiscount(float discount) {
         this.discount = discount;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("ID: %d | Data da venda: %s | Forma de pagamento: %s | Parcelas: %d | Desconto: %.2f",
+                id, saleDate, paymentMethod, instalment, discount);
     }
 
 }

@@ -60,7 +60,16 @@ public class Product {
 
     @Override
     public String toString() {
-        return String.format("ID: %d | Tipo: %s | Valor de Venda: %.2f | Descrição: %s | Cor: %s",
+        String productInfo = String.format("ID: %d | Tipo: %s | Valor de Venda: %.2f | Descrição: %s | Cor: %s",
                 id, type, saleValue, description, color);
+        if(!replacements.isEmpty()){
+            productInfo += "\nReposições do produto\n";
+            for(Replacement replacement : replacements){
+                productInfo += replacement.toString() + "\n";
+            }
+        } else {
+            productInfo += "\nSem reposição.";
+        }
+        return productInfo;
     }
 }

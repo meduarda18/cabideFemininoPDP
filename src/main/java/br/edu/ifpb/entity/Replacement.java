@@ -67,4 +67,10 @@ public class Replacement {
     public void setBuyValue(float buyValue) {
         this.buyValue = buyValue;
     }
+
+    @Override
+    public String toString() {
+        return String.format("ID: %d | Produto: %s | Tamanho: %s | Quantidade: %d | Data da Reposição: %s | Valor de Compra: %.2f",
+                id, product.getType(), size, quantity, replacementDate, buyValue);
+    }
 }

@@ -5,7 +5,6 @@ import br.edu.ifpb.validator.ProductValidator;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.NoSuchElementException;
 
 public class ProductService implements CrudService<Product, Integer> {
     private final List<Product> products =  new ArrayList<>();

@@ -1,6 +1,7 @@
 package br.edu.ifpb;
 
 import br.edu.ifpb.entity.Product;
+import br.edu.ifpb.entity.Replacement;
 import br.edu.ifpb.entity.Sale;
 import br.edu.ifpb.service.ProductService;
 import br.edu.ifpb.entity.SaleItem;
@@ -31,6 +32,13 @@ public class Main {
 
         productService.printProducts();
 
+        Replacement rep = new Replacement(p5, "Único", 2, "2024-09-12", 15.00f);
+
+        p5.addReplacement(rep);
+
+        System.out.println("\nProdutos depois da reposicao");
+        productService.printProducts();
+
         // Criar uma lista de items de venda
         List<SaleItem> saleItems = new ArrayList<>();  // Lista de itens da venda (inicialmente vazia)
 
@@ -52,7 +60,7 @@ public class Main {
 
         // Exibir detalhes da venda
         System.out.println("\nDetalhes da venda:");
-        System.out.println(sale1);
+        saleService.printSales();
 
 
 

@@ -15,7 +15,6 @@ public class Main {
         ProductService productService = new ProductService();
         SaleService saleService = new SaleService();
 
-        //criando os produtos
         Product p1 = new Product("Calça WidLeg", 150.00f, "Calça Mon jeans com lavagem clara.", "Azul Claro");
         Product p2 = new Product("Calça Mon", 150.00f, "Calça WidLeg jeans com lavagem escura.", "Azul Claro");
         Product p3 = new Product("Camiseta", 25.00f, "Camiseta regata", "Branca");
@@ -32,37 +31,31 @@ public class Main {
 
         productService.printProducts();
 
+        //criando uma reposição
         Replacement rep = new Replacement(p5, "Único", 2, "2024-09-12", 15.00f);
 
-        p5.addReplacement(rep);
+        productService.addReplacement(p5, rep);
 
         System.out.println("\nProdutos depois da reposicao");
         productService.printProducts();
 
+        //Criando itens de venda
+        SaleItem saleItem1 = new SaleItem(p1, "M", p1.getSaleValue(), 2, null);  // Produto 1, tamanho M, quantidade 2
+        SaleItem saleItem2 = new SaleItem(p2, "G", p2.getSaleValue(), 1, null);  // Produto 2, tamanho G, quantidade 1
+
         // Criar uma lista de items de venda
-        List<SaleItem> saleItems = new ArrayList<>();  // Lista de itens da venda (inicialmente vazia)
+        List<SaleItem> saleItems = new ArrayList<>();
+        saleItems.add(saleItem1);
+        saleItems.add(saleItem2);
 
         //Criar uma venda
         Sale sale1 = new Sale(saleItems, "2024-09-12", "Cartão de Crédito", 3, 10.0f);
         saleService.add(sale1);
 
-        //Criando itens de venda
-        SaleItem saleItem1 = new SaleItem(p1, "M", p1.getSaleValue(), 2, sale1);  // Produto 1, tamanho M, quantidade 2
-        SaleItem saleItem2 = new SaleItem(p2, "G", p2.getSaleValue(), 1, sale1);  // Produto 2, tamanho G, quantidade 1
-
-
-        // Adicionar os itens à venda
-        sale1.getItems().add(saleItem1);
-        sale1.getItems().add(saleItem2);
-
-        sale1.getItems().remove(1);
-
 
         // Exibir detalhes da venda
         System.out.println("\nDetalhes da venda:");
         saleService.printSales();
-
-
 
         /*
         productService.printProducts();

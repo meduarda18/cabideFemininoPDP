@@ -1,6 +1,7 @@
 package br.edu.ifpb.service;
 
 import br.edu.ifpb.entity.Product;
+import br.edu.ifpb.entity.Replacement;
 import br.edu.ifpb.validator.ProductValidator;
 
 import java.util.ArrayList;
@@ -27,7 +28,6 @@ public class ProductService implements CrudService<Product, Integer> {
             return true;
         }
         return false;
-
     }
 
     @Override
@@ -68,5 +68,13 @@ public class ProductService implements CrudService<Product, Integer> {
                 System.out.println(product);
             }
         }
+    }
+
+    public void addReplacement(Product product, Replacement replacement) {
+        product.getReplacements().add(replacement);  // Manipulação da lista de reposições
+    }
+
+    public void removeReplacement(Product product, Replacement replacement) {
+        product.getReplacements().remove(replacement);  // Manipulação da lista de reposições
     }
 }

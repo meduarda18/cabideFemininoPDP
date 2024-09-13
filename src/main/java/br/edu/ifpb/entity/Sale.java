@@ -12,7 +12,7 @@ public class Sale {
     private String paymentMethod;
     private int instalment;
     private float discount;
-    //private SaleItem saleItem;
+    private SaleItem saleItem;
 
 
     public Sale(){
@@ -21,7 +21,7 @@ public class Sale {
     }
 
     public Sale(List<SaleItem> items, String saleDate, String paymentMethod, int instalment, float discount) {
-        this.items = new ArrayList<>();
+        this.items = new ArrayList<>(items);
         this.id = IdGeneratorSale.generateIdSale();
         this.saleDate = saleDate;
         this.paymentMethod = paymentMethod;
@@ -71,9 +71,9 @@ public class Sale {
         float total = 0;
 
         for(SaleItem saleItem : items){
-            total += (saleItem.getUnitValue() * saleItem.getQuantity()) - discount;
+            total += (saleItem.getUnitValue() * saleItem.getQuantity());
         }
-        return total;
+        return total - discount;
     }
 
     @Override

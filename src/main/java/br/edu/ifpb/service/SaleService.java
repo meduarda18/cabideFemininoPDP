@@ -10,6 +10,9 @@ public class SaleService implements CrudService<Sale, Integer>{
 
     @Override
     public void add(Sale sale) {
+        if(sale.getItems() == null || sale.getItems().isEmpty()){
+            throw new IllegalArgumentException("A venda não contém items de venda.");
+        }
         sales.add(sale);
     }
 

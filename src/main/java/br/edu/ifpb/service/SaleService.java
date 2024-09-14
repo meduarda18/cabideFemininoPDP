@@ -1,6 +1,7 @@
 package br.edu.ifpb.service;
 
 import br.edu.ifpb.entity.Sale;
+import br.edu.ifpb.validator.SaleValidator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,6 +15,7 @@ public class SaleService implements CrudService<Sale, Integer>{
         if(sale.getItems() == null || sale.getItems().isEmpty()){
             throw new IllegalArgumentException("A venda não contém items de venda.");
         }
+        SaleValidator.validateSale(sale);
         sales.add(sale);
     }
 

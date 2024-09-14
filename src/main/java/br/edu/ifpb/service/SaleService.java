@@ -4,6 +4,7 @@ import br.edu.ifpb.entity.Sale;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 public class SaleService implements CrudService<Sale, Integer>{
     private final List<Sale> sales = new ArrayList<>();
@@ -34,11 +35,18 @@ public class SaleService implements CrudService<Sale, Integer>{
     public boolean update(Integer id, Sale saleUpdate) {
         Sale sale = searchID(id);
         if(sale != null){
-            sale.setSaleDate(saleUpdate.getSaleDate());
-            sale.setPaymentMethod(saleUpdate.getPaymentMethod());
-            sale.setInstalment(saleUpdate.getInstalment());
-            sale.setDiscount(saleUpdate.getDiscount());
-
+            if(saleUpdate.getSaleDate() != null && !saleUpdate.getSaleDate().isEmpty()){
+                sale.setSaleDate(saleUpdate.getSaleDate());
+            }
+            if(saleUpdate.getPaymentMethod() != null && !saleUpdate.getPaymentMethod().isEmpty()){
+                sale.setPaymentMethod(saleUpdate.getPaymentMethod());
+            }
+            if(saleUpdate.getInstalment() > 0){
+                sale.setInstalment(saleUpdate.getInstalment());
+            }
+            if(saleUpdate.getDiscount() >= 0){
+                sale.setDiscount(saleUpdate.getDiscount());
+            }
             return true;
         }
         return false;
@@ -46,12 +54,15 @@ public class SaleService implements CrudService<Sale, Integer>{
 
     @Override
     public Sale searchID(Integer id) {
+        if(id == null){
+            throw new NoSuchElementException("O id não pode ser nulo.");
+        }
         for (Sale sale : sales) {
             if (sale.getId().equals(id)) {
                 return sale;
             }
         }
-        throw new IllegalArgumentException("Venda com ID " + id + " não encontrado.");
+        throw new NoSuchElementException("Venda com ID " + id + " não encontrado.");
     }
 
 

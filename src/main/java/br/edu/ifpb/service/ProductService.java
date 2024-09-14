@@ -6,6 +6,7 @@ import br.edu.ifpb.validator.ProductValidator;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 public class ProductService implements CrudService<Product, Integer> {
     private final List<Product> products =  new ArrayList<>();
@@ -32,32 +33,44 @@ public class ProductService implements CrudService<Product, Integer> {
 
     @Override
     public List<Product> list() {
+        if(products.isEmpty()){
+            return new ArrayList<>();
+        }
         return products;
     }
 
     @Override
     public boolean update(Integer id, Product productUpdate) {
-        Product product = searchID(id);
-        if(product != null){
-            product.setType(productUpdate.getType());
-            product.setSaleValue(productUpdate.getSaleValue());
-            product.setDescription(productUpdate.getDescription());
-            product.setColor(productUpdate.getColor());
-
+        Product existingProduct = searchID(id);
+        if(existingProduct != null){
+            if(productUpdate.getType() != null && !productUpdate.getType().isEmpty()){
+                existingProduct.setType(productUpdate.getType());
+            }
+            if(productUpdate.getSaleValue() > 0){
+                existingProduct.setSaleValue(productUpdate.getSaleValue());
+            }
+            if(productUpdate.getDescription() != null && !productUpdate.getDescription().isEmpty()){
+                existingProduct.setDescription(productUpdate.getDescription());
+            }
+            if(productUpdate.getColor() != null && !productUpdate.getColor().isEmpty()){
+                existingProduct.setColor(productUpdate.getColor());
+            }
             return true;
         }
-
         return false;
     }
 
     @Override
     public Product searchID(Integer id) {
+        if(id == null){
+            throw new NoSuchElementException("O id não pode ser nulo.");
+        }
         for (Product product : products) {
             if (product.getId().equals(id)) {
                 return product;
             }
         }
-        throw new IllegalArgumentException("Produto com ID " + id + " não encontrado.");
+        throw new NoSuchElementException("Produto com ID " + id + " não encontrado.");
     }
 
     public void printProducts() {

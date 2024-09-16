@@ -10,13 +10,12 @@ public class Sale extends Entity{
     private int instalment;
     private float discount;
 
-
     public Sale(){
         this.items = new ArrayList<>();
     }
 
     public Sale(List<SaleItem> items, String saleDate, String paymentMethod, int instalment, float discount) {
-        this.items = new ArrayList<>(items);
+        this();
         this.saleDate = saleDate;
         this.paymentMethod = paymentMethod;
         this.instalment = instalment;

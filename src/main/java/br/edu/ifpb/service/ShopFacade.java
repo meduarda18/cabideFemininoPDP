@@ -69,7 +69,5 @@ public class ShopFacade {
         saleService.addSaleItems(sale, saleItem);
     }
 
-    public void removeSaleItems(SaleItem saleItem, List<SaleItem> items, Sale sale){
-        saleService.removeSaleItems(saleItem, items, sale);
-    }
+    public void removeSaleItems(SaleItem saleItem, Sale sale) { saleService.removeSaleItems(saleItem, sale); }
 }

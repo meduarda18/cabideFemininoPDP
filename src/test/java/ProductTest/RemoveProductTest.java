@@ -59,6 +59,5 @@ public class RemoveProductTest {
         Assertions.assertThrows(NoSuchElementException.class, () -> {
             shopFacade.removeProduct(10);
         });
-
     }
 }

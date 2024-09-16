@@ -84,8 +84,8 @@ public class SaleService implements CrudService<Sale, Integer>{
         sale.getItems().add(saleItem);
     }
 
-    public void removeSaleItems(SaleItem saleItem, List<SaleItem> items, Sale sale){
-        SaleItemValidator.saleItemExists(saleItem, items);
+    public void removeSaleItems(SaleItem saleItem, Sale sale) {
+        SaleItemValidator.saleItemExists(saleItem, sale.getItems());
         sale.getItems().remove(saleItem);
     }
 }

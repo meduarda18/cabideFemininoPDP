@@ -22,10 +22,10 @@ public class ProductValidator {
     public static boolean productExists(String type, String color, List<Product> products) {
         for (Product p : products) { // Para cada produto p na lista products
             if (p.getType().equals(type) && p.getColor().equals(color)) {
-                return true; // Produto encontrado
+                return true;
             }
         }
-        return false; // Produto não encontrado
+        return false;
     }
 
 }

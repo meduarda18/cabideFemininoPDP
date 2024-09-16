@@ -10,5 +10,4 @@ public abstract class Entity {
         this.id = IdGenerator.getInstance(this.getClass().getName()).generateId();
     }
 
-
 }

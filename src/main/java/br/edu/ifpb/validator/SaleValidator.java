@@ -21,13 +21,4 @@ public class SaleValidator {
 
     }
 
-
-    public static void saleExists(Sale sale, List<Sale> sales){
-        for (Sale s : sales) { //para cada venda s na lista sales
-            if (s.getId().equals(sale.getId())) {
-                throw new IllegalArgumentException("Esta venda existe.");
-            }
-        }
-    }
-
 }

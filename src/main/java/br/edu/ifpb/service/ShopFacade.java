@@ -1,7 +1,9 @@
 package br.edu.ifpb.service;
 
 import br.edu.ifpb.entity.Product;
+import br.edu.ifpb.entity.Replacement;
 import br.edu.ifpb.entity.Sale;
+import br.edu.ifpb.entity.SaleItem;
 
 import java.util.List;
 
@@ -34,6 +36,14 @@ public class ShopFacade {
        return productService.searchID(productId);
     }
 
+    public void addReplacementProduct(Product product, Replacement replacementProduct){
+        productService.addReplacement(product, replacementProduct);
+    }
+
+    public void removeReplacementProduct(Product product, Replacement replacementProduct){
+        productService.removeReplacement(product, replacementProduct);
+    }
+
 
     public void addSale(Sale sale){
         saleService.add(sale);
@@ -53,5 +63,13 @@ public class ShopFacade {
 
     public Sale searchIdSale(Integer saleId){
         return saleService.searchID(saleId);
+    }
+
+    public void addSaleItems(Sale sale, SaleItem saleItem){
+        saleService.addSaleItems(sale, saleItem);
+    }
+
+    public void removeSaleItems(SaleItem saleItem, List<SaleItem> items, Sale sale){
+        saleService.removeSaleItems(saleItem, items, sale);
     }
 }

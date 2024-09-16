@@ -1,6 +1,8 @@
 package br.edu.ifpb.service;
 
 import br.edu.ifpb.entity.Sale;
+import br.edu.ifpb.entity.SaleItem;
+import br.edu.ifpb.validator.SaleItemValidator;
 import br.edu.ifpb.validator.SaleValidator;
 
 import java.util.ArrayList;
@@ -67,7 +69,6 @@ public class SaleService implements CrudService<Sale, Integer>{
         throw new NoSuchElementException("Venda com ID " + id + " não encontrado.");
     }
 
-
     public void printSales() {
         if (sales.isEmpty()) {
             System.out.println("Nenhuma venda registrada.");
@@ -76,5 +77,15 @@ public class SaleService implements CrudService<Sale, Integer>{
                 System.out.println(sale);
             }
         }
+    }
+
+    public void addSaleItems(Sale sale, SaleItem saleItem){
+        SaleItemValidator.validateSaleItem(saleItem);
+        sale.getItems().add(saleItem);
+    }
+
+    public void removeSaleItems(SaleItem saleItem, List<SaleItem> items, Sale sale){
+        SaleItemValidator.saleItemExists(saleItem, items);
+        sale.getItems().remove(saleItem);
     }
 }

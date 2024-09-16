@@ -1,28 +1,22 @@
 package br.edu.ifpb.entity;
 
-import br.edu.ifpb.util.IdGeneratorSale;
-
 import java.util.ArrayList;
 import java.util.List;
 
-public class Sale {
-    private Integer id;
+public class Sale extends Entity{
     private final List<SaleItem> items; //impede que a referencia seja modificada
     private String saleDate;
     private String paymentMethod;
     private int instalment;
     private float discount;
-    private SaleItem saleItem;
 
 
     public Sale(){
         this.items = new ArrayList<>();
-        this.id = IdGeneratorSale.generateIdSale();
     }
 
     public Sale(List<SaleItem> items, String saleDate, String paymentMethod, int instalment, float discount) {
         this.items = new ArrayList<>(items);
-        this.id = IdGeneratorSale.generateIdSale();
         this.saleDate = saleDate;
         this.paymentMethod = paymentMethod;
         this.instalment = instalment;

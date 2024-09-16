@@ -1,22 +1,14 @@
 package br.edu.ifpb.entity;
 
-import br.edu.ifpb.util.IdGeneratorSaleItem;
-
-public class SaleItem {
-    private Integer id;
+public class SaleItem extends Entity{
     private Product product;
     private String size;
     private float unitValue;
     private int quantity;
     private Sale sale;
 
-    //Construtor padrão
-    public SaleItem(){
-        this.id = IdGeneratorSaleItem.generateIdSaleItem();
-    }
 
     public SaleItem(Product product, String size, float unitValue, int quantity, Sale sale) {
-        this.id = IdGeneratorSaleItem.generateIdSaleItem();
         this.product = product;
         this.size = size;
         this.unitValue = product.getSaleValue();

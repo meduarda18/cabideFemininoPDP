@@ -39,6 +39,12 @@ public class Main {
         System.out.println("\nProdutos depois da reposicao");
         productService.printProducts();
 
+        productService.removeReplacement(p5, rep);
+
+        System.out.println("\nProdutos depois da reposicao");
+        productService.printProducts();
+
+        /*
         //Criando itens de venda
         SaleItem saleItem1 = new SaleItem(p1, "M", p1.getSaleValue(), 2, null);  // Produto 1, tamanho M, quantidade 2
         SaleItem saleItem2 = new SaleItem(p2, "G", p2.getSaleValue(), 1, null);  // Produto 2, tamanho G, quantidade 1
@@ -57,7 +63,7 @@ public class Main {
         System.out.println("\nDetalhes da venda:");
         saleService.printSales();
 
-        /*
+
         productService.printProducts();
 
 

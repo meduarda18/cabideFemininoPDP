@@ -35,7 +35,7 @@ public class RemoveSaleTest {
         shopFacade.removeSale(s1.getId());
 
         Assertions.assertThrows(NoSuchElementException.class, () -> {
-            shopFacade.searchIdSale(s1.getId());  // Deve lançar exceção pois a venda foi removido
+            shopFacade.searchIdSale(s1.getId());
         });
     }
 
@@ -59,7 +59,7 @@ public class RemoveSaleTest {
         int idInvalid = 10;
 
         Assertions.assertThrows(NoSuchElementException.class, () -> {
-            shopFacade.removeSale(idInvalid);  // Deve lançar exceção pois o id é invalido
+            shopFacade.removeSale(idInvalid);
         });
     }
 
@@ -83,7 +83,7 @@ public class RemoveSaleTest {
         shopFacade.removeSale(s1.getId());
 
         Assertions.assertThrows(NoSuchElementException.class, () -> {
-            shopFacade.removeSale(s1.getId());  // Deve lançar exceção pois a venda ja foi removida
+            shopFacade.removeSale(s1.getId());
         });
     }
     @Test
@@ -91,7 +91,7 @@ public class RemoveSaleTest {
         ShopFacade shopFacade = new ShopFacade();
 
         Assertions.assertThrows(NoSuchElementException.class, () -> {
-            shopFacade.removeSale(10);  // Deve lançar exceção pois a venda não existe
+            shopFacade.removeSale(10);
         });
     }
 }

@@ -12,7 +12,7 @@ public class SaleItemValidator {
         if(saleItem.getSize() == null || saleItem.getSize().isBlank()){
             throw new IllegalArgumentException("O tamanho do item de venda não pode ser nulo ou vazio.");
         }
-        if(saleItem.getUnitValue() <= 0.0){
+        if(saleItem.getUnitValue() <= 0.00f){
             throw new IllegalArgumentException("O valor unitário do item de venda deve ser maior que zero.");
         }
         if(saleItem.getQuantity() <= 0){

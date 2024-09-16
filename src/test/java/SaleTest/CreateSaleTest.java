@@ -26,7 +26,7 @@ public class CreateSaleTest {
         Sale s1 = new Sale(new ArrayList<SaleItem>(), "2024-09-12", "Dinheiro", 1, 0);
 
         SaleItem saleItem1 = new SaleItem(p1, "M", p1.getSaleValue(), 1, s1);
-        s1.getItems().add(saleItem1);
+        shopFacade.addSaleItems(s1, saleItem1);
 
         shopFacade.addSale(s1);
 
@@ -61,7 +61,7 @@ public class CreateSaleTest {
         Sale s1 = new Sale(new ArrayList<SaleItem>(), "", "Dinheiro", 1, 0);
 
         SaleItem saleItem1 = new SaleItem(p1, "M", p1.getSaleValue(), 1, s1);
-        s1.getItems().add(saleItem1);
+        shopFacade.addSaleItems(s1, saleItem1);
 
         Assertions.assertThrows(IllegalArgumentException.class, () -> {shopFacade.addSale(s1);}, "Deveria lançar um exceção ao tentar criar uma venda com data vazia.");
     }
@@ -79,7 +79,7 @@ public class CreateSaleTest {
         Sale s1 = new Sale(new ArrayList<SaleItem>(), "2024-09-12", "", 1, 0);
 
         SaleItem saleItem1 = new SaleItem(p1, "M", p1.getSaleValue(), 1, s1);
-        s1.getItems().add(saleItem1);
+        shopFacade.addSaleItems(s1, saleItem1);
 
         Assertions.assertThrows(IllegalArgumentException.class, () -> {
             shopFacade.addSale(s1);
@@ -99,7 +99,7 @@ public class CreateSaleTest {
         Sale s1 = new Sale(new ArrayList<SaleItem>(), "2024-09-12", "Dinheiro", 0, 0);
 
         SaleItem saleItem1 = new SaleItem(p1, "M", p1.getSaleValue(), 1, s1);
-        s1.getItems().add(saleItem1);
+        shopFacade.addSaleItems(s1, saleItem1);
 
         Assertions.assertThrows(IllegalArgumentException.class, () -> {
             shopFacade.addSale(s1);
@@ -119,7 +119,7 @@ public class CreateSaleTest {
         Sale s1 = new Sale(new ArrayList<SaleItem>(), "2024-09-12", "Dinheiro", 1, -10);
 
         SaleItem saleItem1 = new SaleItem(p1, "M", p1.getSaleValue(), 1, s1);
-        s1.getItems().add(saleItem1);
+        shopFacade.addSaleItems(s1, saleItem1);
 
         Assertions.assertThrows(IllegalArgumentException.class, () -> {
             shopFacade.addSale(s1);
@@ -136,7 +136,7 @@ public class CreateSaleTest {
         Sale s1 = new Sale(new ArrayList<SaleItem>(), "2024-09-12", "Dinheiro", 1, 200);  // Desconto maior que o total
 
         SaleItem saleItem1 = new SaleItem(p1, "M", p1.getSaleValue(), 1, s1);
-        s1.getItems().add(saleItem1);
+        shopFacade.addSaleItems(s1, saleItem1);
 
         Assertions.assertThrows(IllegalArgumentException.class, () -> {
             shopFacade.addSale(s1);

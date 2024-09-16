@@ -3,6 +3,7 @@ package br.edu.ifpb.service;
 import br.edu.ifpb.entity.Product;
 import br.edu.ifpb.entity.Replacement;
 import br.edu.ifpb.validator.ProductValidator;
+import br.edu.ifpb.validator.ReplacementValidator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -83,11 +84,13 @@ public class ProductService implements CrudService<Product, Integer> {
         }
     }
 
+    // Manipulação da lista de reposições
     public void addReplacement(Product product, Replacement replacement) {
-        product.getReplacements().add(replacement);  // Manipulação da lista de reposições
+        ReplacementValidator.ValidateReplacement(replacement);
+        product.getReplacements().add(replacement);
     }
 
     public void removeReplacement(Product product, Replacement replacement) {
-        product.getReplacements().remove(replacement);  // Manipulação da lista de reposições
+        product.getReplacements().remove(replacement);
     }
 }

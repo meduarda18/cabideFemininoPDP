@@ -1,31 +1,29 @@
 package br.edu.ifpb.entity;
 
-import br.edu.ifpb.util.IdGeneratorProduct;
+import br.edu.ifpb.util.IdGenerator;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Product {
-    private Integer id;
+public class Product extends Entity{
     private String type;
     private float saleValue;
     private String description;
     private String color;
-    private final List<Replacement> replacements; // Lista mutável
+    private final List<Replacement> replacements;
 
     // Construtor padrão
     public Product() {
-        this.id = IdGeneratorProduct.generateIdProduct();
-        this.replacements = new ArrayList<>(); // Inicializa como mutável
+        this.replacements = new ArrayList<>();
     }
 
     // Construtor com parâmetros
     public Product(String type, float saleValue, String description, String color) {
-        this.id = IdGeneratorProduct.generateIdProduct();
+        this();
         this.type = type;
         this.saleValue = saleValue;
         this.description = description;
         this.color = color;
-        this.replacements = new ArrayList<>(); // Inicializa como mutável
+
     }
 
     // Getters e Setters
@@ -47,7 +45,6 @@ public class Product {
 
     public void setColor(String color) { this.color = color; }
 
-    // Retorna a lista mutável
     public List<Replacement> getReplacements() { return replacements; }
 
     @Override

@@ -1,22 +1,13 @@
 package br.edu.ifpb.entity;
 
-import br.edu.ifpb.util.IdGeneratorReplacement;
-
-public class Replacement {
-    private Integer id;
-    private Product product; // Referência ao produto
+public class Replacement extends Entity{
+    private Product product;
     private String size;
     private int quantity;
     private String replacementDate;
     private float buyValue;
 
-    //construtor padrão
-    public  Replacement(){
-        this.id = IdGeneratorReplacement.generateIdReplacement();
-    }
-
     public Replacement(Product product, String size, int quantity, String replacementDate, float buyValue) {
-        this.id = IdGeneratorReplacement.generateIdReplacement();
         this.product = product;
         this.size = size;
         this.quantity = quantity;
